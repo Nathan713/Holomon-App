@@ -23,38 +23,38 @@ export default function Home({navigation}) {
     }, [navigation]);
 
     const onLogin = async (data) => {
-      navigation.navigate('BluetoothConnect')
-      // try
-      // {
-      //   let data = {
-      //     user_name : username,
-      //     hash : password
-      //   }
-      //   var send = JSON.stringify(data);
-      //   //const response = await fetch('http://10.0.2.2:3000/api/user/login',
-      //   const response = await fetch('http://ec2-18-208-181-102.compute-1.amazonaws.com:3000/api/user/login',   
-      //   {method:'POST',body:send,headers:{'Content-Type': 'application/json'}});
-      //   const jsonRes = await response.json();
-      //   //var res = JSON.parse(await response.text());
-      //   console.log(jsonRes);
+      //navigation.navigate('BluetoothConnect')
+      try
+      {
+        let data = {
+          user_name : username,
+          hash : password
+        }
+        var send = JSON.stringify(data);
+        //const response = await fetch('http://10.0.2.2:3000/api/user/login',
+        const response = await fetch('http://ec2-18-208-181-102.compute-1.amazonaws.com:3000/api/user/login',   
+        {method:'POST',body:send,headers:{'Content-Type': 'application/json'}});
+        const jsonRes = await response.json();
+        //var res = JSON.parse(await response.text());
+        console.log(jsonRes);
 
-      //   if (jsonRes.error) {
-      //     console.log("failed")
-      //     setError("Login failed. Try Again")
-      //   }
-      //   else
-      //   {
-      //     console.log("Succesfull");
-      //     await storeData(jsonRes.accessToken);
-      //     let token = await getData();
-      //     console.log(token)
-      //     navigation.navigate('BluetoothConnect')
-      //   }
-      // }
-      // catch(e)
-      // {
-      //   console.log(e)
-      // }
+        if (jsonRes.error) {
+          console.log("failed")
+          setError("Login failed. Try Again")
+        }
+        else
+        {
+          console.log("Succesfull");
+          await storeData(jsonRes.accessToken);
+          let token = await getData();
+          console.log(token)
+          navigation.navigate('BluetoothConnect')
+        }
+      }
+      catch(e)
+      {
+        console.log(e)
+      }
     };
 
     
